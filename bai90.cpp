@@ -2,6 +2,7 @@
 #include<math.h>
 using namespace std;
 #define MAX 100
+const long MIN = 100000000;
 
 void nhap(int a[], int n)
 {
@@ -39,30 +40,23 @@ bool checksn(int n)
 
 int sntnn(int a[], int n)
 {
-       int vt, d, i;
-       for(int i = 0;i < n;i++)
+       long min = MIN;
+       for(int i  = 0;i < n;i++)
        {
-              if(checksn(a[i]) == 1)
+              if(a[i] < min && checksn(a[i]))
               {
-                     d = i;
-                     break;
+                     min = a[i];
               }
        }
-       if(i == n)
+       if(min == MIN)
        {
-              return -1;
+              return 0;
        }
-       vt = d;
-       for(int i = vt + 1;i < n;i++)
+       else
        {
-              if(checksn(a[i]) == 1 && a[i] < a[vt])
-              {
-                     vt = i;
-              }
-       }
-       return vt;
+              return min;
+       }      
 }
-
 int main()
 {
        int a[MAX], n;
